@@ -26,6 +26,8 @@
   --iris-2:        #b69cff;   /* violet end of the same spark           */
   --bone:          #ece3d4;   /* warm off-white text — desert bone      */
   --bone-dim:      #8d8576;   /* muted bone for labels/secondary        */
+  --inscription-fill: #5f574c;/* cut-face of the carved creed — WARM stone, lean-in dim
+                                 (was cool #3b3a3e: read dead on a warm plate. warm > cool here) */
 
   /* --- GLOW ------------------------------------------------------------
      The page lives or dies on bloom. These drive text-shadow / drop-shadow.
@@ -139,7 +141,12 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-lg);
+  /* This gap separates the two PAIRS — [name+callsign] and [tagline+creed] —
+     and the creed from the channels. Each pair is tighter internally (see
+     .identity__text gap and .bio__secondline margin) so they read as units,
+     not as evenly-spaced loose lines. Turn this to set the breathing room
+     BETWEEN groups; turn the pair-internal gaps to set tightness WITHIN. */
+  gap: var(--space-md);
 }
 
 /* --- the resonance rings (static in slice 1) --------------------------- */
@@ -177,7 +184,7 @@ body {
   line-height: 0.92;
   letter-spacing: var(--track-name);
   color: var(--bone);
-  text-shadow: var(--glow-soft);
+  text-shadow: var(--glow-ember);
 }
 
 .callsign {
@@ -212,10 +219,30 @@ body {
   font-size: var(--size-bio);
 }
 
+/* the creed — lapidary INSCRIPTION, carved into the plate rather than lit.
+   Roman inscriptional capitals (think Trajan): serif caps, wide tracking,
+   interpuncts where prose would put commas. The illusion of incision is
+   three cheap tricks stacked:
+     · fill near the ground color so the glyph reads as the *cut face* in shade
+     · a faint LIGHT line below each glyph = the lower bevel catching overhead light
+     · a dark line above = the shadowed upper wall of the groove
+   No glow: carving doesn't emit, it's found. Quiet on purpose — you lean in.
+   Knobs: lift --inscription-fill toward --bone-dim for a more legible cut;
+   raise the bevel-light alpha for a deeper-pressed look. */
 .bio__secondline {
-  display: block; 
-  color: var(--ember-dim);
+  display: block;
+  margin-top: var(--space-sm);        /* tight under its tagline → the two read as one pair */
+  font-family: var(--font-display);
+  font-style: normal;                 /* inscriptions stand upright */
+  font-weight: 500;
   font-size: var(--size-bio-small);
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;                /* balance the trailing track → optically centered */
+  color: var(--inscription-fill);
+  text-shadow:
+     0  1px 0   rgba(236, 227, 212, 0.18),  /* lit lower bevel (bone) */
+     0 -1px 1px rgba(0, 0, 0, 0.55);        /* shadowed upper inner wall */
 }
 
 /* --- channels (links as instrument readouts) -------------------------- */
@@ -258,7 +285,80 @@ body {
 }
 
 /* =========================================================================
-   MOTION SAFETY — respect reduced-motion (matters once slice 2 lands)
+   SLICE 2 — THE INSTRUMENT WAKES
+   · Idle: a slow resonance brightens outward through the rings, on a loop —
+     the loop, looping. Pure CSS keyframes, staggered per ring.
+   · Cursor: vars (--drift-*, --engage, --spin) are eased every frame by
+     main.js — the plate leans toward you, brightens as you near center, and
+     the reticle tips to track. "faintly listening back."
+   · Click: main.js spawns a .ripple that expands from the touch point.
+   All suppressed under prefers-reduced-motion (JS opts out; keyframes killed
+   by the media query below).
+   ========================================================================= */
+
+/* resonance period — lower = more urgent pulse. a tweak knob like the rest. */
+:root { --breath: 5.5s; }
+
+/* idle resonance: a brightening that sweeps inner → outer ring, forever */
+@keyframes resonate {
+  0%, 100% { stroke: var(--ember-dim); opacity: 0.32; }
+  50%      { stroke: var(--ember);     opacity: 0.70; }
+}
+.rings__group circle {
+  animation: resonate var(--breath) ease-in-out infinite;
+}
+/* outward stagger: inner ring leads, each outer ring lags → a travelling pulse */
+.rings__group circle:nth-child(1) { animation-delay: 0s;   }
+.rings__group circle:nth-child(2) { animation-delay: 0.3s; }
+.rings__group circle:nth-child(3) { animation-delay: 0.6s; }
+.rings__group circle:nth-child(4) { animation-delay: 0.9s; }
+.rings__group circle:nth-child(5) { animation-delay: 1.2s; }
+
+/* the hot point breathes in glow only — JS leaves its transform free */
+@keyframes core-breath {
+  0%, 100% { opacity: 0.75; }
+  50%      { opacity: 1;    }
+}
+.rings__core { animation: core-breath var(--breath) ease-in-out infinite; }
+
+/* cursor-driven state — main.js eases these. The svg only centers + brightens;
+   the drift/spin live on the reticle LAYERS (live + ghosts) so each can lag. */
+.rings {
+  overflow: visible;                 /* let click-ripples + ghost trail extend past the box */
+  transform: translate(-50%, -58%);
+  filter: drop-shadow(var(--glow-soft))
+          brightness(calc(1 + 0.3 * var(--engage, 0)));
+}
+
+/* each reticle layer is transformed by JS (translate toward pointer + tilt);
+   rotation pivots on the layer's own centre (the hot point). */
+.reticle {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* PHOSPHOR PERSISTENCE — the ghost trail.
+   main.js clones the live reticle into two layers that ease toward the pointer
+   MORE SLOWLY and sit DIMMER, so movement leaves a fading afterimage. At rest
+   they converge under the live reticle and vanish. Turn these opacities (and
+   the per-layer EASE in main.js) to make the trail longer / brighter. */
+.reticle--ghost { pointer-events: none; }
+.reticle--g1 { opacity: 0.34; }
+.reticle--g2 { opacity: 0.16; filter: blur(0.7px); }
+
+/* spokes fade up as you engage — the reticle "powers on" toward the cursor */
+.rings__spokes line { opacity: calc(0.16 + 0.40 * var(--engage, 0)); }
+
+/* the click-answer ripple (created + scaled by main.js) */
+.ripple {
+  fill: none;
+  stroke: var(--ember-bright);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+/* =========================================================================
+   MOTION SAFETY — respect reduced-motion
    ========================================================================= */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition-duration: 0.01ms !important; }
