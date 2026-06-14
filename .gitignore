@@ -1,0 +1,11 @@
+# local-only planning notes — lane-side thinking, never goes public
+notes/
+
+# os / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# dependencies (none yet — future-proofing)
+node_modules/
