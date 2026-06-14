@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }} · resonating loop</title>
+
+  {#- VISIBILITY: unlisted pages must not be indexed by search engines.
+      Explicit equality (== 'unlisted') so intent reads right off the page.
+      public → indexable; private → never built, so never reaches here. -#}
+  {% if visibility == 'unlisted' %}
+  <meta name="robots" content="noindex,nofollow" />
+  {% endif %}
+
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="prose">
+    {{ content | safe }}
+  </main>
+</body>
+</html>

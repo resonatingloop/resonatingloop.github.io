@@ -1,0 +1,21 @@
+---
+layout: base.njk
+title: writing
+visibility: public
+permalink: /writing/
+---
+<h1>writing</h1>
+
+{#- The archive lists collections.writing, which is PUBLIC-ONLY by construction
+    (non-public posts are excluded from all collections in the chokepoint,
+    writing/posts/posts.11tydata.js). Newest first. -#}
+<ul class="archive">
+{%- for post in collections.writing | reverse %}
+  <li>
+    <a href="{{ post.url }}">{{ post.data.title }}</a>
+    {% if post.data.date %}<time>{{ post.data.date }}</time>{% endif %}
+  </li>
+{%- else %}
+  <li>nothing here yet.</li>
+{%- endfor %}
+</ul>

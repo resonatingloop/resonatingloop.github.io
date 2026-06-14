@@ -7,5 +7,12 @@ Thumbs.db
 *.swp
 *~
 
-# dependencies (none yet — future-proofing)
+# dependencies
 node_modules/
+
+# eleventy build output (generated; never committed)
+_site/
+
+# PRIVATE drafts — never to the public repo. visibility:private posts live here,
+# and the build is configured to ignore this folder entirely.
+_drafts/
