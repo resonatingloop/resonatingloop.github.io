@@ -1,0 +1,158 @@
+{
+	"threadHistory": [
+		{
+			"thread": [
+				"FILES/template.md"
+			],
+			"currentNode": "FILES/template.md"
+		},
+		{
+			"thread": [
+				"FILES/planetwork/template 1.md"
+			],
+			"currentNode": "FILES/planetwork/template 1.md"
+		},
+		{
+			"thread": [
+				"FILES/planetwork"
+			],
+			"currentNode": "FILES/planetwork"
+		},
+		{
+			"thread": [
+				"FILES/planetwork",
+				"FILES/planetwork/template 1.md"
+			],
+			"currentNode": "FILES/planetwork/template 1.md"
+		},
+		{
+			"thread": [
+				"FILES/planetwork",
+				"FILES/planetwork/New Note.md"
+			],
+			"currentNode": "FILES/planetwork/New Note.md"
+		},
+		{
+			"thread": [
+				"FILES/planetwork/New Note.md"
+			],
+			"currentNode": "FILES/planetwork/New Note.md"
+		},
+		{
+			"thread": [
+				"FILES/musings"
+			],
+			"currentNode": "FILES/musings"
+		},
+		{
+			"thread": [
+				"FILES/musings",
+				"FILES/musings/template.md"
+			],
+			"currentNode": "FILES/musings/template.md"
+		},
+		{
+			"thread": [
+				"FILES/musings",
+				"FILES/musings/not-my-first-rodeo.md"
+			],
+			"currentNode": "FILES/musings/not-my-first-rodeo.md"
+		},
+		{
+			"thread": [
+				"FILES/musings",
+				"FILES/musings/not-my-first-rodeo.md"
+			],
+			"currentNode": "FILES/musings"
+		},
+		{
+			"thread": [
+				"FILES/musings",
+				"FILES/musings/template.md"
+			],
+			"currentNode": "FILES/musings/template.md"
+		},
+		{
+			"thread": [
+				"FILES/musings",
+				"FILES/musings/not-my-first-rodeo.md"
+			],
+			"currentNode": "FILES/musings/not-my-first-rodeo.md"
+		}
+	],
+	"threadIndex": 11,
+	"previousSession": "",
+	"map": {
+		"nodes": {
+			"FILES/template.md": {
+				"node": "FILES/template.md",
+				"isRoot": false,
+				"strength": 2,
+				"dateCreated": "2026-06-15T05:23:58.053Z"
+			},
+			"FILES/planetwork/template 1.md": {
+				"node": "FILES/planetwork/template 1.md",
+				"isRoot": false,
+				"strength": 3,
+				"dateCreated": "2026-06-15T05:24:01.620Z"
+			},
+			"FILES/planetwork": {
+				"node": "FILES/planetwork",
+				"isRoot": false,
+				"strength": 3,
+				"dateCreated": "2026-06-15T05:24:04.366Z"
+			},
+			"FILES/planetwork/New Note.md": {
+				"node": "FILES/planetwork/New Note.md",
+				"isRoot": false,
+				"strength": 3,
+				"dateCreated": "2026-06-15T05:24:19.527Z"
+			},
+			"FILES/musings": {
+				"node": "FILES/musings",
+				"isRoot": false,
+				"strength": 3,
+				"dateCreated": "2026-06-15T11:19:39.685Z"
+			},
+			"FILES/musings/template.md": {
+				"node": "FILES/musings/template.md",
+				"isRoot": false,
+				"strength": 3,
+				"dateCreated": "2026-06-15T11:19:41.521Z"
+			},
+			"FILES/musings/not-my-first-rodeo.md": {
+				"node": "FILES/musings/not-my-first-rodeo.md",
+				"isRoot": false,
+				"strength": 3,
+				"dateCreated": "2026-06-15T11:19:42.778Z"
+			}
+		},
+		"connections": [
+			{
+				"from": "FILES/planetwork",
+				"to": "FILES/planetwork/template 1.md",
+				"strength": 3,
+				"dateCreated": "2026-06-15T05:24:08.811Z"
+			},
+			{
+				"from": "FILES/planetwork",
+				"to": "FILES/planetwork/New Note.md",
+				"strength": 3,
+				"dateCreated": "2026-06-15T05:24:19.527Z"
+			},
+			{
+				"from": "FILES/musings",
+				"to": "FILES/musings/template.md",
+				"strength": 3,
+				"dateCreated": "2026-06-15T11:19:41.522Z"
+			},
+			{
+				"from": "FILES/musings",
+				"to": "FILES/musings/not-my-first-rodeo.md",
+				"strength": 3,
+				"dateCreated": "2026-06-15T11:19:42.778Z"
+			}
+		]
+	},
+	"version": 1
+}

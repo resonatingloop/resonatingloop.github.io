@@ -1,0 +1,271 @@
+{
+	"version": 1,
+	"date": "2026-06-15T16:50:58.197Z",
+	"items": {
+		"FILES/.tangent/tags": {
+			"uuid": "1f1687a6-609c-6090-a08a-316498540297"
+		},
+		"FILES/.tangent/tangents": {
+			"uuid": "1f1687a6-60a0-6eb0-814c-e4d542bf31b4"
+		},
+		"FILES/.tangent/tangents/mnemetics_0": {
+			"uuid": "1f1687a6-60ef-60b0-845d-a1b58c5c0c6f"
+		},
+		"FILES/.tangent/tangents/mnemetics_0/sessions": {
+			"uuid": "1f1687a6-63e6-6520-bb49-73fb91661f69"
+		},
+		"FILES/.tangent/tangents/mnemetics_0/sessions/2026-6-14_22-23-53.tangentsession": {
+			"uuid": "1f1687a6-63e8-6c30-add4-651c3ff4acee"
+		},
+		"FILES/.tangent/tangents/mnemetics_0/tangent.json": {
+			"uuid": "1f1687a6-60f1-67c0-b24d-c3ddc3837fc8"
+		},
+		"FILES/.tangent/tangents/mnemetics_0/state": {
+			"uuid": "1f1687a6-8e7d-6a40-8a87-7a571f0db2fe"
+		},
+		"FILES/.tangent/tangents/mnemetics_0/state/1f1687a6-5b31-6510-ab13-4cd7178c6233.noteview": {
+			"uuid": "1f1687a6-8e7d-6a41-8f51-fb6403fab8be"
+		},
+		"FILES/.tangent/tangents/mnemetics_0/state/1f1687a6-b06c-62a0-a9f5-f4b19091e336.noteview": {
+			"uuid": "1f1687a6-b084-6940-a990-5ef843a322c2"
+		},
+		"FILES/.tangent/tangents/mnemetics_0/state/1f1687a6-5b20-63a0-9acd-d90de43959ba.noteview": {
+			"uuid": "1f168ac1-a9ae-6b20-a1ad-aa6e34128919"
+		},
+		"FILES/.tangent/tangents/mnemetics_0/state/1f168ac1-b5a9-61a0-ade4-84fa65bbbc8d.noteview": {
+			"uuid": "1f168ac1-dffc-6100-a90e-365f588c0b7c"
+		},
+		"FILES/logs/2026/06/14-Sun-1633-log.md": {
+			"uuid": "1f1687a6-5b22-6ab0-8748-1d0586929929",
+			"modified": "2026-06-14T23:36:49.424Z",
+			"structure": [
+				{
+					"type": 3,
+					"start": 0,
+					"end": 228,
+					"data": {
+						"title": "14-Sun-1633-log",
+						"date": "2026-06-14",
+						"visibility": "unlisted"
+					}
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "status report",
+					"start": 229,
+					"end": 244
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "status notes",
+					"start": 305,
+					"end": 319
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "log",
+					"start": 483,
+					"end": 488
+				}
+			]
+		},
+		"FILES/logs/dd-wday-mmss-log.md": {
+			"uuid": "1f1687a6-5b2c-66f0-98d3-cfe1558e64a5",
+			"modified": "2026-06-14T23:38:56.489Z",
+			"structure": [
+				{
+					"type": 3,
+					"start": 0,
+					"end": 213,
+					"data": {
+						"title": null,
+						"date": "2026-06-14",
+						"visibility": "unlisted"
+					}
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "status report",
+					"start": 214,
+					"end": 229
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "status notes",
+					"start": 277,
+					"end": 291
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "log",
+					"start": 325,
+					"end": 330
+				}
+			]
+		},
+		"FILES/long-form/template.md": {
+			"uuid": "1f1687a6-5af6-6b90-9f37-a0a91712a15e",
+			"modified": "2026-06-14T21:09:07.724Z",
+			"structure": [
+				{
+					"type": 3,
+					"start": 0,
+					"end": 221,
+					"data": {
+						"title": "template",
+						"date": "2026-06-13",
+						"visibility": "unlisted"
+					}
+				}
+			]
+		},
+		"FILES/musings/template.md": {
+			"uuid": "1f1687a6-5b20-63a0-9acd-d90de43959ba",
+			"modified": "2026-06-14T21:09:07.724Z",
+			"structure": [
+				{
+					"type": 3,
+					"start": 0,
+					"end": 221,
+					"data": {
+						"title": "template",
+						"date": "2026-06-13",
+						"visibility": "unlisted"
+					}
+				}
+			]
+		},
+		"FILES/musings/.tangentfolder": {
+			"uuid": "1f168ac1-9824-6f30-9623-db3f853b9723"
+		},
+		"FILES/musings/not-my-first-rodeo.md": {
+			"uuid": "1f168ac1-b5a9-61a0-ade4-84fa65bbbc8d",
+			"modified": "2026-06-15T11:30:46.742Z",
+			"structure": [
+				{
+					"type": 3,
+					"start": 0,
+					"end": 231,
+					"data": {
+						"title": "not-my-first-rodeo",
+						"date": "2026-06-15",
+						"visibility": "unlisted"
+					}
+				}
+			]
+		},
+		"FILES/planetwork/template 1.md": {
+			"uuid": "1f1687a6-b06c-62a0-a9f5-f4b19091e336",
+			"modified": "2026-06-15T05:24:01.619Z",
+			"structure": [
+				{
+					"type": 3,
+					"start": 0,
+					"end": 221,
+					"data": {
+						"title": "template",
+						"date": "2026-06-13",
+						"visibility": "unlisted"
+					}
+				}
+			]
+		},
+		"FILES/planetwork/.tangentfolder": {
+			"uuid": "1f1687a6-cab4-6ae0-a2c4-d3fcccdc0379"
+		},
+		"FILES/planetwork/New Note.md": {
+			"uuid": "1f1687a7-5b4d-6480-a19e-cb287c155694",
+			"modified": "2026-06-15T05:28:29.046Z",
+			"structure": [
+				{
+					"type": 3,
+					"start": 0,
+					"end": 233,
+					"data": {
+						"title": "tropical-natal-chart",
+						"date": "2026-06-13",
+						"visibility": "unlisted"
+					}
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "summary",
+					"start": 235,
+					"end": 244
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "Planets",
+					"start": 374,
+					"end": 383
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "Asteroids",
+					"start": 385,
+					"end": 396
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "Nodes Points",
+					"start": 398,
+					"end": 414
+				},
+				{
+					"type": 2,
+					"level": 1,
+					"text": "Aspects",
+					"start": 416,
+					"end": 425
+				},
+				{
+					"type": 2,
+					"level": 2,
+					"text": "Strong",
+					"start": 426,
+					"end": 435
+				},
+				{
+					"type": 2,
+					"level": 2,
+					"text": "Medium",
+					"start": 437,
+					"end": 446
+				},
+				{
+					"type": 2,
+					"level": 2,
+					"text": "Weak",
+					"start": 448,
+					"end": 455
+				}
+			]
+		},
+		"FILES/template.md": {
+			"uuid": "1f1687a6-5b31-6510-ab13-4cd7178c6233",
+			"modified": "2026-06-14T21:09:07.724Z",
+			"structure": [
+				{
+					"type": 3,
+					"start": 0,
+					"end": 221,
+					"data": {
+						"title": "template",
+						"date": "2026-06-13",
+						"visibility": "unlisted"
+					}
+				}
+			]
+		}
+	}
+}
