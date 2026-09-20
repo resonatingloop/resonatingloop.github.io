@@ -11,7 +11,10 @@
 the accepted resonatrix station revamp is complete in the local worktree. the
 homepage now exposes an unequal constellation of geogematria, cyphers.news,
 and cootie oracle; writing visibility fails closed; and a single github pages
-workflow owns the eleventy artifact.
+workflow owns the eleventy artifact. on fine-pointer screens the work rests as
+sigils only: geogematria and cyphers mirror one another across the upper field,
+their names resolving on hover or keyboard focus. touch layouts retain the full
+readouts.
 
 verification performed:
 
@@ -21,8 +24,8 @@ npm run build
 node --check main.js
 python3 /home/resonatingloop/.codex/skills/manage-project-docs/scripts/check_docset.py .
 git diff --check
-rendered inspection at 1440x1000, 1366x650, and 390x844
-rendered inspection with reduced motion and focused signal states
+rendered inspection at 1490x827 and 390x844
+rendered inspection of rest, cyphers hover, and non-hover fallback states
 ```
 
 evidence of success:
@@ -30,7 +33,7 @@ evidence of success:
 ```text
 4 node tests pass.
 eleventy copies 2 files and writes 15 files.
-desktop, short-laptop, mobile, reduced-motion, and tuned states render without
+desktop rest, desktop hover, and mobile fallback states render without
 navigation or utility collisions.
 ```
 

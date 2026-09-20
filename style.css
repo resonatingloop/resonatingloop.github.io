@@ -330,8 +330,8 @@ a { color: inherit; }
 .signal--geo .signal__glyph { color: var(--iris); }
 
 .signal--cyphers {
-  top: calc(50% + 80px);
-  right: calc(50% + 225px);
+  top: calc(50% - 285px);
+  right: calc(50% + 205px);
   flex-direction: row-reverse;
   text-align: right;
 }
@@ -390,6 +390,53 @@ a { color: inherit; }
   width: 92px;
   height: 92px;
   filter: drop-shadow(-8px -8px 18px rgba(182, 156, 255, 0.12));
+}
+
+/* On pointer-led screens the work first registers as a constellation of
+   sigils. Acquiring a sigil resolves its call sign; touch keeps the complete
+   readout because hover is not a dependable affordance there. */
+@media (hover: hover) and (pointer: fine) and (min-width: 761px) {
+  .signal:not(.signal--cootie) {
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .signal:not(.signal--cootie) .signal__copy {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 0.35rem);
+    width: max-content;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-0.55rem, -50%);
+    transition: opacity 260ms var(--ease-signal), transform 360ms var(--ease-signal);
+  }
+
+  .signal--cyphers .signal__copy {
+    right: calc(100% + 0.35rem);
+    left: auto;
+    align-items: flex-end;
+    transform: translate(0.55rem, -50%);
+  }
+
+  .signal--cootie .signal__copy {
+    opacity: 0;
+    transform: translate(0.55rem, 0.35rem);
+    transition: opacity 260ms var(--ease-signal), transform 360ms var(--ease-signal);
+  }
+
+  .signal:hover .signal__copy,
+  .signal:focus-visible .signal__copy {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+
+  .signal--cootie:hover .signal__copy,
+  .signal--cootie:focus-visible .signal__copy {
+    transform: translate(0, 0);
+  }
 }
 
 .station-footer {
@@ -599,7 +646,7 @@ a { color: inherit; }
   }
   .rings { width: min(88vh, 620px); height: min(88vh, 620px); }
   .signal--geo { top: calc(50% - 235px); }
-  .signal--cyphers { top: calc(50% + 55px); }
+  .signal--cyphers { top: calc(50% - 235px); }
   .station-footer { bottom: 1.4rem; }
 }
 
