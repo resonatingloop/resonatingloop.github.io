@@ -1,71 +1,45 @@
-/* =========================================================================
-   resonating loop — v0
-   -------------------------------------------------------------------------
-   A single dark "plate": an instrument face on a desert night. Warm amber
-   line-work (the radiating compass) on cold blue-black, with a cool
-   iridescent accent borrowed from the haloed figure in the banner.
-
-   HOW TO TWEAK THIS PAGE (your reps live here):
-   Everything visual is a token in :root below. Change a token once and the
-   whole page re-tunes. The rest of the file just *spends* these tokens.
-   Each token block says what it's for and what happens if you push it.
-   ========================================================================= */
+/* resonatrix station — warm signal on a cold desert plate */
 
 :root {
+  --ground: #07090f;
+  --ground-deep: #04050a;
+  --ground-warm: #140d0a;
+  --ember: #e08a3c;
+  --ember-bright: #ffb066;
+  --ember-dim: #7a5230;
+  --iris: #8fb4ff;
+  --iris-2: #b69cff;
+  --bone: #ece3d4;
+  --bone-dim: #a49a89;
+  --inscription-fill: #6f6659;
 
-  /* --- COLOR ----------------------------------------------------------
-     Warm light on cold dark. The page is mostly --ground; --ember is the
-     glowing instrument; --iris is the rare cool spark. Restraint is the
-     point — two accents, used sparingly, beat a rainbow. */
-  --ground:        #07090f;   /* deep blue-black — the desert night    */
-  --ground-warm:   #140d0a;   /* faint ember warmth pooled at center   */
-  --ember:         #e08a3c;   /* the amber line-work / compass glow     */
-  --ember-bright:  #ffb066;   /* hotter amber for the live core/hover   */
-  --ember-dim:     #7a5230;   /* recessed amber — quiet rings, ticks    */
-  --iris:          #8fb4ff;   /* cool iridescent accent (the halo)      */
-  --iris-2:        #b69cff;   /* violet end of the same spark           */
-  --bone:          #ece3d4;   /* warm off-white text — desert bone      */
-  --bone-dim:      #8d8576;   /* muted bone for labels/secondary        */
-  --inscription-fill: #5f574c;/* cut-face of the carved creed — WARM stone, lean-in dim
-                                 (was cool #3b3a3e: read dead on a warm plate. warm > cool here) */
+  --glow-ember: 0 0 18px rgba(224, 138, 60, 0.45);
+  --glow-iris: 0 0 22px rgba(143, 180, 255, 0.4);
+  --glow-soft: 0 0 40px rgba(224, 138, 60, 0.12);
 
-  /* --- GLOW ------------------------------------------------------------
-     The page lives or dies on bloom. These drive text-shadow / drop-shadow.
-     Kill them and it goes flat and corporate; over-do them and it smears. */
-  --glow-ember:  0 0 18px rgba(224, 138, 60, 0.45);
-  --glow-iris:   0 0 22px rgba(143, 180, 255, 0.40);
-  --glow-soft:   0 0 40px rgba(224, 138, 60, 0.12);
-
-  /* --- TYPE ------------------------------------------------------------
-     Serif for the names (oracular), mono for the machine readout. */
   --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Fluid type via clamp(min, preferred, max). The name scales hardest.
-     Want more drama on big screens? Raise the middle vw number. */
-  --size-name:      clamp(3.2rem, 11vw, 8.5rem);
-  --size-bio:       clamp(1.05rem, 3vw, 1.5rem);
-  --size-bio-small: clamp(.8rem, 2vw, 1.14rem);
-  --size-label:     clamp(0.7rem, 1.4vw, 0.82rem);
+  --size-name: clamp(3.2rem, 11vw, 8.5rem);
+  --size-bio: clamp(1.05rem, 3vw, 1.5rem);
+  --size-bio-small: clamp(0.8rem, 2vw, 1.14rem);
+  --size-label: clamp(0.7rem, 1.4vw, 0.82rem);
 
-  /* Tracking. Mono labels get generous letter-spacing — instrument panels
-     space their text out. The display name gets a touch of negative. */
-  --track-label:  0.42em;
-  --track-name:  -0.01em;
+  --track-label: 0.42em;
+  --track-name: -0.01em;
+  --breath: 5.5s;
+  --ease-signal: cubic-bezier(0.22, 0.72, 0.2, 1);
 
-  /* --- SPACE -----------------------------------------------------------
-     One rhythm, scaled. Change --space-unit to retune the whole vertical
-     cadence at once (this is the single most fun knob to turn). */
   --space-unit: clamp(0.9rem, 2.2vw, 1.4rem);
-  --space-sm:  calc(var(--space-unit) * 0.6);
-  --space-md:  var(--space-unit);
-  --space-lg:  calc(var(--space-unit) * 2);
-  --space-xl:  calc(var(--space-unit) * 3.2);
+  --space-sm: calc(var(--space-unit) * 0.6);
+  --space-md: var(--space-unit);
+  --space-lg: calc(var(--space-unit) * 2);
+  --space-xl: calc(var(--space-unit) * 3.2);
 }
 
-/* --- RESET (minimal, just the sharp edges) ----------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
-html, body { height: 100%; }
+html, body { min-height: 100%; }
+html { background: var(--ground); }
 body {
   margin: 0;
   background: var(--ground);
@@ -75,291 +49,564 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* =========================================================================
-   THE PLATE — full-viewport stage with layered atmosphere
-   ========================================================================= */
+a { color: inherit; }
+
+.skip-link {
+  position: fixed;
+  z-index: 20;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.65rem 0.8rem;
+  transform: translateY(-180%);
+  border: 1px solid var(--ember);
+  background: var(--ground);
+  color: var(--bone);
+  font: 500 0.72rem/1 var(--font-mono);
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 180ms ease;
+}
+.skip-link:focus { transform: translateY(0); }
+
 .plate {
   position: relative;
-  isolation: isolate;            /* keep the grain/glow stacking local */
+  isolation: isolate;
   min-height: 100svh;
   display: grid;
   place-items: center;
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) var(--space-lg) 7rem;
   overflow: hidden;
-
-  /* Atmosphere, not a flat fill: a warm ember pool low-and-center fading
-     into cold blue-black at the edges — the lit horizon of the banner.
-     Two radial gradients layered: warm glow + a vignette to pull the eyes in. */
   background:
     radial-gradient(120% 90% at 50% 62%,
-        var(--ground-warm) 0%,
-        rgba(20, 13, 10, 0.35) 22%,
-        transparent 55%),
+      var(--ground-warm) 0%,
+      rgba(20, 13, 10, 0.35) 22%,
+      transparent 55%),
     radial-gradient(140% 120% at 50% 40%,
-        #0b0e16 0%,
-        var(--ground) 60%,
-        #04050a 100%);
+      #0b0e16 0%,
+      var(--ground) 60%,
+      var(--ground-deep) 100%);
 }
 
-/* Film grain over everything — texture so the dark never reads as dead
-   space. Inline SVG turbulence; ::after so it sits above the gradient.
-   Lower the opacity for cleaner, raise it for a dustier plate. */
 .plate::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 8;
   pointer-events: none;
   opacity: 0.05;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* =========================================================================
-   CORNER REGISTRATION TICKS — the cartographic bezel
-   Small L-marks framing the plate like a map's reticle. Pure decoration.
-   ========================================================================= */
 .tick {
   position: absolute;
-  width: 22px; height: 22px;
-  z-index: 4;
+  z-index: 7;
+  width: 22px;
+  height: 22px;
   border: 1px solid var(--ember-dim);
-  opacity: 0.55;
+  opacity: 0.62;
 }
-.tick--tl { top: var(--space-lg);    left: var(--space-lg);  border-right: 0; border-bottom: 0; }
-.tick--tr { top: var(--space-lg);    right: var(--space-lg); border-left: 0;  border-bottom: 0; }
-.tick--bl { bottom: var(--space-lg); left: var(--space-lg);  border-right: 0; border-top: 0; }
-.tick--br { bottom: var(--space-lg); right: var(--space-lg); border-left: 0;  border-top: 0; }
+.tick--tl { top: var(--space-lg); left: var(--space-lg); border-right: 0; border-bottom: 0; }
+.tick--tr { top: var(--space-lg); right: var(--space-lg); border-left: 0; border-bottom: 0; }
+.tick--bl { bottom: var(--space-lg); left: var(--space-lg); border-right: 0; border-top: 0; }
 
-/* =========================================================================
-   IDENTITY — the centerpiece
-   ========================================================================= */
 .identity {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  /* This gap separates the two PAIRS — [name+callsign] and [tagline+creed] —
-     and the creed from the channels. Each pair is tighter internally (see
-     .identity__text gap and .bio__secondline margin) so they read as units,
-     not as evenly-spaced loose lines. Turn this to set the breathing room
-     BETWEEN groups; turn the pair-internal gaps to set tightness WITHIN. */
   gap: var(--space-md);
+  text-align: center;
 }
 
-/* --- the resonance rings (static in slice 1) --------------------------- */
 .rings {
   position: absolute;
-  z-index: -1;                    /* sit behind the name */
-  top: 50%; left: 50%;
-  transform: translate(-50%, -58%);
+  z-index: -1;
+  top: 50%;
+  left: 50%;
   width: min(118vw, 720px);
   height: min(118vw, 720px);
+  overflow: visible;
   pointer-events: none;
-  filter: drop-shadow(var(--glow-soft));
+  transform: translate(-50%, -58%);
+  filter: drop-shadow(var(--glow-soft)) brightness(calc(1 + 0.3 * var(--engage, 0)));
+  transition: filter 500ms var(--ease-signal);
 }
-.rings circle, .rings line {
+
+.rings circle,
+.rings line,
+.rings path,
+.rings ellipse {
   fill: none;
   stroke: var(--ember-dim);
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
+  transition: stroke 500ms var(--ease-signal), opacity 500ms var(--ease-signal);
 }
+
 .rings__group circle { opacity: 0.5; }
-.rings__spokes line  { stroke: var(--ember-dim); opacity: 0.28; }
+.rings__spokes line { opacity: calc(0.16 + 0.4 * var(--engage, 0)); }
 .rings__core {
-  fill: var(--ember-bright);
-  stroke: none;
+  fill: var(--ember-bright) !important;
+  stroke: none !important;
   filter: drop-shadow(var(--glow-ember));
 }
 
-/* --- the names -------------------------------------------------------- */
-.identity__text { display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); }
+.reticle {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.reticle--ghost { pointer-events: none; }
+.reticle--g1 { opacity: 0.34; }
+.reticle--g2 { opacity: 0.16; filter: blur(0.7px); }
+
+.rings__atlas,
+.rings__carrier {
+  opacity: 0;
+  transition: opacity 520ms var(--ease-signal);
+}
+.rings__atlas path,
+.rings__atlas ellipse {
+  stroke: var(--iris);
+  stroke-dasharray: 2 9;
+  opacity: 0.36;
+}
+.rings__locus {
+  stroke: var(--iris) !important;
+  stroke-width: 1.5 !important;
+  filter: drop-shadow(var(--glow-iris));
+}
+.rings__carrier path,
+.rings__carrier circle { stroke: var(--ember-bright); }
+.rings__carrier circle { fill: var(--ember-bright); }
+
+.plate[data-tuned="geo"] .rings__atlas { opacity: 0.78; }
+.plate[data-tuned="geo"] .rings__group circle { stroke: var(--iris); }
+.plate[data-tuned="geo"] .rings__core { fill: var(--iris) !important; filter: drop-shadow(var(--glow-iris)); }
+.plate[data-tuned="cyphers"] .rings__carrier { opacity: 0.82; }
+.plate[data-tuned="cyphers"] .rings__group circle:last-child { stroke: var(--ember-bright); }
+.plate[data-tuned="cootie"] .rings__spokes line:nth-child(3),
+.plate[data-tuned="cootie"] .rings__spokes line:nth-child(4) { stroke: var(--iris-2); opacity: 0.64; }
+
+.identity__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
 
 .name {
   margin: 0;
-  font-weight: 300;               /* thin display weight = ethereal */
-  font-size: var(--size-name);
-  line-height: 0.92;
-  letter-spacing: var(--track-name);
   color: var(--bone);
+  font-size: var(--size-name);
+  font-weight: 300;
+  letter-spacing: var(--track-name);
+  line-height: 0.86;
   text-shadow: var(--glow-ember);
+  white-space: nowrap;
+}
+
+.epithet {
+  margin: 0.15rem 0 0;
+  color: #b8ae9d;
+  font-size: clamp(0.95rem, 1.9vw, 1.28rem);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.24em;
+  line-height: 1;
+  text-indent: 0.24em;
+  text-shadow: 0 0 18px rgba(236, 227, 212, 0.12);
 }
 
 .callsign {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-weight: 400;
-  font-size: var(--size-label);
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  color: var(--ember);
-  text-shadow: var(--glow-ember);
   display: inline-flex;
   align-items: center;
   gap: 0.7em;
-  padding-left: var(--track-label);  /* optically re-center the tracked text */
+  margin: 0.35rem 0 0;
+  padding-left: var(--track-label);
+  color: var(--ember);
+  font: 400 var(--size-label)/1.4 var(--font-mono);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-shadow: var(--glow-ember);
 }
 .callsign__glyph { color: var(--ember-bright); }
 
-/* --- the two-liner ---------------------------------------------------- */
 .bio {
-  margin: 0;
   max-width: 60ch;
+  margin: 0;
   font-style: italic;
   font-weight: 400;
   line-height: 1.5;
-  /* color: var(--bone-dim); */
 }
-/* placeholder styling — visibly provisional so it begs to be replaced */
 .bio__firstline {
   display: block;
   color: var(--ember-dim);
   font-size: var(--size-bio);
 }
-
-/* the creed — lapidary INSCRIPTION, carved into the plate rather than lit.
-   Roman inscriptional capitals (think Trajan): serif caps, wide tracking,
-   interpuncts where prose would put commas. The illusion of incision is
-   three cheap tricks stacked:
-     · fill near the ground color so the glyph reads as the *cut face* in shade
-     · a faint LIGHT line below each glyph = the lower bevel catching overhead light
-     · a dark line above = the shadowed upper wall of the groove
-   No glow: carving doesn't emit, it's found. Quiet on purpose — you lean in.
-   Knobs: lift --inscription-fill toward --bone-dim for a more legible cut;
-   raise the bevel-light alpha for a deeper-pressed look. */
 .bio__secondline {
   display: block;
-  margin-top: var(--space-sm);        /* tight under its tagline → the two read as one pair */
-  font-family: var(--font-display);
-  font-style: normal;                 /* inscriptions stand upright */
-  font-weight: 500;
-  font-size: var(--size-bio-small);
-  text-transform: uppercase;
-  letter-spacing: 0.34em;
-  text-indent: 0.34em;                /* balance the trailing track → optically centered */
+  margin-top: var(--space-sm);
   color: var(--inscription-fill);
+  font-family: var(--font-display);
+  font-size: var(--size-bio-small);
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
   text-shadow:
-     0  1px 0   rgba(236, 227, 212, 0.18),  /* lit lower bevel (bone) */
-     0 -1px 1px rgba(0, 0, 0, 0.55);        /* shadowed upper inner wall */
+    0 1px 0 rgba(236, 227, 212, 0.18),
+    0 -1px 1px rgba(0, 0, 0, 0.55);
+  text-transform: uppercase;
 }
 
-/* --- channels (links as instrument readouts) -------------------------- */
+.signals {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+}
+
+.signal {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 0.7rem;
+  color: var(--bone-dim);
+  font-family: var(--font-mono);
+  text-decoration: none;
+  pointer-events: auto;
+  transition: color 320ms var(--ease-signal), transform 320ms var(--ease-signal), text-shadow 320ms var(--ease-signal);
+}
+.signal__glyph {
+  color: var(--ember-dim);
+  font-size: 1.15rem;
+  transition: color 320ms var(--ease-signal), transform 320ms var(--ease-signal), text-shadow 320ms var(--ease-signal);
+}
+.signal__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+.signal__name {
+  color: var(--bone);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.signal__note {
+  color: var(--bone-dim);
+  font-size: 0.61rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+}
+.signal:hover,
+.signal:focus-visible {
+  color: var(--iris);
+  outline: none;
+  text-shadow: var(--glow-iris);
+  transform: translateY(-2px);
+}
+.signal:hover .signal__glyph,
+.signal:focus-visible .signal__glyph {
+  color: var(--ember-bright);
+  text-shadow: var(--glow-ember);
+  transform: rotate(18deg);
+}
+.signal:focus-visible::before {
+  content: "";
+  position: absolute;
+  inset: -0.5rem -0.65rem;
+  border: 1px solid var(--ember-bright);
+}
+
+.signal--geo {
+  top: calc(50% - 285px);
+  left: calc(50% + 205px);
+}
+.signal--geo .signal__glyph { color: var(--iris); }
+
+.signal--cyphers {
+  top: calc(50% + 80px);
+  right: calc(50% + 225px);
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.signal--writing {
+  top: calc(50% + 185px);
+  left: calc(50% + 205px);
+}
+
+.signal--cootie {
+  right: 0;
+  bottom: 0;
+  width: 210px;
+  height: 116px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0 4.8rem 2.25rem 0;
+  overflow: hidden;
+  text-align: right;
+}
+.signal--cootie .signal__copy {
+  position: relative;
+  z-index: 2;
+  opacity: 0.82;
+  white-space: nowrap;
+}
+.signal--cootie .signal__name { font-size: 0.7rem; }
+.signal--cootie .signal__note { font-size: 0.56rem; }
+.signal__fold {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 74px;
+  height: 74px;
+  background:
+    linear-gradient(135deg,
+      transparent 0 48.5%,
+      rgba(182, 156, 255, 0.2) 49% 100%);
+  border-right: 1px solid var(--ember-dim);
+  border-bottom: 1px solid var(--ember-dim);
+  transition: width 360ms var(--ease-signal), height 360ms var(--ease-signal), filter 360ms var(--ease-signal);
+}
+.signal__fold::before,
+.signal__fold::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform-origin: 100% 100%;
+  background: var(--ember-dim);
+}
+.signal__fold::before { width: 104px; height: 1px; transform: rotate(45deg); }
+.signal__fold::after { width: 1px; height: 22px; }
+.signal--cootie:hover .signal__fold,
+.signal--cootie:focus-visible .signal__fold {
+  width: 92px;
+  height: 92px;
+  filter: drop-shadow(-8px -8px 18px rgba(182, 156, 255, 0.12));
+}
+
+.station-footer {
+  position: absolute;
+  z-index: 5;
+  right: 12rem;
+  bottom: 2.65rem;
+  left: 12rem;
+}
 .channels {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-md) var(--space-lg);
-  margin-top: var(--space-sm);
+  gap: 0.7rem 1.8rem;
 }
 .channel {
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
-  gap: 0.55em;
-  font-family: var(--font-mono);
-  font-size: var(--size-label);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-decoration: none;
   color: var(--bone-dim);
-  transition: color 0.35s ease, text-shadow 0.35s ease;
+  font: 400 0.64rem/1 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 280ms ease, text-shadow 280ms ease;
 }
-.channel__glyph {
+.channel::before {
+  content: "·";
+  margin-right: 0.65rem;
   color: var(--ember-dim);
-  font-size: 1.15em;
-  transition: color 0.35s ease, text-shadow 0.35s ease;
 }
-/* hover: the channel "lights up" — cool iris on the label, hot amber glyph.
-   the only place the iridescent accent touches an interaction. */
 .channel:hover,
 .channel:focus-visible {
   color: var(--iris);
-  text-shadow: var(--glow-iris);
   outline: none;
+  text-shadow: var(--glow-iris);
 }
-.channel:hover .channel__glyph,
-.channel:focus-visible .channel__glyph {
-  color: var(--ember-bright);
-  text-shadow: var(--glow-ember);
-}
+.channel:focus-visible { text-decoration: underline; text-underline-offset: 0.35em; }
 
-/* =========================================================================
-   SLICE 2 — THE INSTRUMENT WAKES
-   · Idle: a slow resonance brightens outward through the rings, on a loop —
-     the loop, looping. Pure CSS keyframes, staggered per ring.
-   · Cursor: vars (--drift-*, --engage, --spin) are eased every frame by
-     main.js — the plate leans toward you, brightens as you near center, and
-     the reticle tips to track. "faintly listening back."
-   · Click: main.js spawns a .ripple that expands from the touch point.
-   All suppressed under prefers-reduced-motion (JS opts out; keyframes killed
-   by the media query below).
-   ========================================================================= */
-
-/* resonance period — lower = more urgent pulse. a tweak knob like the rest. */
-:root { --breath: 5.5s; }
-
-/* idle resonance: a brightening that sweeps inner → outer ring, forever */
 @keyframes resonate {
   0%, 100% { stroke: var(--ember-dim); opacity: 0.32; }
-  50%      { stroke: var(--ember);     opacity: 0.70; }
+  50% { stroke: var(--ember); opacity: 0.7; }
 }
-.rings__group circle {
-  animation: resonate var(--breath) ease-in-out infinite;
-}
-/* outward stagger: inner ring leads, each outer ring lags → a travelling pulse */
-.rings__group circle:nth-child(1) { animation-delay: 0s;   }
+.rings__group circle { animation: resonate var(--breath) ease-in-out infinite; }
+.rings__group circle:nth-child(1) { animation-delay: 0s; }
 .rings__group circle:nth-child(2) { animation-delay: 0.3s; }
 .rings__group circle:nth-child(3) { animation-delay: 0.6s; }
 .rings__group circle:nth-child(4) { animation-delay: 0.9s; }
 .rings__group circle:nth-child(5) { animation-delay: 1.2s; }
 
-/* the hot point breathes in glow only — JS leaves its transform free */
 @keyframes core-breath {
   0%, 100% { opacity: 0.75; }
-  50%      { opacity: 1;    }
+  50% { opacity: 1; }
 }
 .rings__core { animation: core-breath var(--breath) ease-in-out infinite; }
 
-/* cursor-driven state — main.js eases these. The svg only centers + brightens;
-   the drift/spin live on the reticle LAYERS (live + ghosts) so each can lag. */
-.rings {
-  overflow: visible;                 /* let click-ripples + ghost trail extend past the box */
-  transform: translate(-50%, -58%);
-  filter: drop-shadow(var(--glow-soft))
-          brightness(calc(1 + 0.3 * var(--engage, 0)));
+@keyframes carrier-run {
+  from { transform: translateX(0); opacity: 0.15; }
+  to { transform: translateX(92px); opacity: 0.9; }
+}
+.plate[data-tuned="cyphers"] .rings__carrier-pulse {
+  animation: carrier-run 1.4s linear infinite;
 }
 
-/* each reticle layer is transformed by JS (translate toward pointer + tilt);
-   rotation pivots on the layer's own centre (the hot point). */
-.reticle {
+@keyframes locus-breathe {
+  0%, 100% { opacity: 0.38; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.18); }
+}
+.plate[data-tuned="geo"] .rings__locus {
   transform-box: fill-box;
   transform-origin: center;
+  animation: locus-breathe 1.8s ease-in-out infinite;
 }
 
-/* PHOSPHOR PERSISTENCE — the ghost trail.
-   main.js clones the live reticle into two layers that ease toward the pointer
-   MORE SLOWLY and sit DIMMER, so movement leaves a fading afterimage. At rest
-   they converge under the live reticle and vanish. Turn these opacities (and
-   the per-layer EASE in main.js) to make the trail longer / brighter. */
-.reticle--ghost { pointer-events: none; }
-.reticle--g1 { opacity: 0.34; }
-.reticle--g2 { opacity: 0.16; filter: blur(0.7px); }
-
-/* spokes fade up as you engage — the reticle "powers on" toward the cursor */
-.rings__spokes line { opacity: calc(0.16 + 0.40 * var(--engage, 0)); }
-
-/* the click-answer ripple (created + scaled by main.js) */
 .ripple {
   fill: none;
-  stroke: var(--ember-bright);
-  stroke-width: 1.5;
-  vector-effect: non-scaling-stroke;
+  stroke: var(--ember-bright) !important;
+  stroke-width: 1.5 !important;
 }
 
-/* =========================================================================
-   MOTION SAFETY — respect reduced-motion
-   ========================================================================= */
+.prose {
+  width: min(100% - 2.5rem, 46rem);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 7rem) 0;
+  font-size: clamp(1.08rem, 2.1vw, 1.25rem);
+  line-height: 1.72;
+}
+.prose__home {
+  display: inline-block;
+  margin-bottom: 3rem;
+  color: var(--ember);
+  font: 400 0.68rem/1 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.prose__home:hover,
+.prose__home:focus-visible { color: var(--iris); outline: none; text-decoration: underline; text-underline-offset: 0.4em; }
+.post h1,
+.prose > h1 {
+  margin: 0 0 2rem;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+}
+.post__date,
+.archive time {
+  color: var(--bone-dim);
+  font: 400 0.68rem/1.5 var(--font-mono);
+  letter-spacing: 0.12em;
+}
+.post a,
+.archive a { color: var(--ember-bright); text-underline-offset: 0.2em; }
+.post blockquote { margin-left: 0; padding-left: 1.25rem; border-left: 1px solid var(--ember-dim); color: var(--bone-dim); }
+.archive { padding: 0; list-style: none; }
+.archive li { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(122, 82, 48, 0.42); }
+
+@media (max-width: 980px) and (min-width: 761px) {
+  .signal--geo { left: calc(50% + 170px); }
+  .signal--cyphers { right: calc(50% + 175px); }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --size-name: clamp(2.9rem, 14vw, 4.6rem);
+    --size-bio: clamp(1rem, 5vw, 1.25rem);
+    --size-bio-small: clamp(0.76rem, 3.5vw, 0.95rem);
+  }
+
+  .plate {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(6rem, 14svh, 8rem) 1.35rem 2.5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .tick--tl, .tick--tr { top: 1.8rem; }
+  .tick--tl, .tick--bl { left: 1.8rem; }
+  .tick--tr { right: 1.8rem; }
+  .tick--bl { bottom: 1.8rem; }
+
+  .identity { width: 100%; gap: 0.85rem; }
+  .rings {
+    width: min(132vw, 520px);
+    height: min(132vw, 520px);
+    transform: translate(-50%, -55%);
+  }
+  .name { line-height: 0.92; }
+  .epithet { font-size: 0.9rem; letter-spacing: 0.18em; text-indent: 0.18em; }
+  .callsign { margin-top: 0.45rem; }
+  .bio__secondline { letter-spacing: 0.26em; text-indent: 0.26em; }
+
+  .signals {
+    position: relative;
+    inset: auto;
+    display: grid;
+    width: min(100%, 21rem);
+    margin-top: 2.75rem;
+    padding-bottom: 5.5rem;
+    pointer-events: auto;
+  }
+  .signal,
+  .signal--geo,
+  .signal--cyphers,
+  .signal--writing {
+    position: relative;
+    inset: auto;
+    justify-content: flex-start;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(122, 82, 48, 0.44);
+    text-align: left;
+    transform: none;
+  }
+  .signal--cyphers { flex-direction: row; }
+  .signal:hover,
+  .signal:focus-visible { transform: translateX(3px); }
+
+  .signal--cootie {
+    position: absolute;
+    right: -1.35rem;
+    bottom: 0;
+    width: 190px;
+    height: 92px;
+    padding: 0 4.25rem 1.7rem 0;
+    border: 0;
+  }
+  .signal__fold { width: 62px; height: 62px; }
+
+  .station-footer {
+    position: relative;
+    inset: auto;
+    width: min(100%, 22rem);
+    margin-top: 1.2rem;
+  }
+  .channels { gap: 0.15rem 1.2rem; }
+  .channel { min-height: 40px; font-size: 0.6rem; }
+}
+
+@media (max-height: 720px) and (min-width: 761px) {
+  :root {
+    --size-name: clamp(3.2rem, 9vw, 6.5rem);
+    --space-unit: 0.9rem;
+  }
+  .rings { width: min(88vh, 620px); height: min(88vh, 620px); }
+  .signal--geo { top: calc(50% - 235px); }
+  .signal--cyphers { top: calc(50% + 55px); }
+  .station-footer { bottom: 1.4rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition-duration: 0.01ms !important; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
 }

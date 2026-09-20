@@ -4,8 +4,12 @@
   "private": true,
   "description": "resonating loop — personal site",
   "scripts": {
+    "clean": "node scripts/clean-site.js",
+    "predev": "npm run clean",
     "dev": "eleventy --serve",
-    "build": "eleventy"
+    "prebuild": "npm run clean",
+    "build": "eleventy",
+    "test": "node --test tests/*.test.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

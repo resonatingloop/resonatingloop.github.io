@@ -2,6 +2,7 @@
 title: liturgy
 date: "2026-07-01"
 visibility: unlisted
+eleventyExcludeFromCollections: true
 # visibility: public (shows in the archive) · unlisted (this — live by direct
 # URL only, noindex) · private (move the file to _drafts/ instead; never built)
 ---

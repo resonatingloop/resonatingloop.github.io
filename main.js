@@ -3,8 +3,8 @@
    -------------------------------------------------------------------------
    Slice 2: wake the instrument. The CSS already breathes on its own; this
    file adds the *listening* — the reticle leans toward the cursor, brightens
-   as you near centre, tilts to track, answers a click with a ripple, and
-   trails a faint PHOSPHOR AFTERIMAGE as it moves (radar persistence).
+   as you near centre, tilts to track, answers a click with a ripple, trails a
+   faint PHOSPHOR AFTERIMAGE, and lets semantic work links tune the field.
 
    The trail is real ghost copies of the reticle that ease toward the pointer
    more slowly + sit dimmer, so motion smears and rest converges.
@@ -139,6 +139,22 @@
     plate.removeEventListener('pointerleave', onLeave);
     plate.removeEventListener('pointerdown', onDown);
     onLeave();                                        // settle back to a still instrument
+  }
+
+  /* work signals tune the plate without becoming nonstandard controls. The
+     anchors still navigate normally; hover and keyboard focus merely expose
+     their local field state. */
+  const signals = [...plate.querySelectorAll('[data-tune]')];
+  const tune = (name = 'idle') => { plate.dataset.tuned = name; };
+
+  for (const signal of signals) {
+    const name = signal.dataset.tune;
+    signal.addEventListener('pointerenter', () => tune(name));
+    signal.addEventListener('pointerleave', () => {
+      if (document.activeElement !== signal) tune();
+    });
+    signal.addEventListener('focus', () => tune(name));
+    signal.addEventListener('blur', () => tune());
   }
 
   if (!reduce.matches) enable();

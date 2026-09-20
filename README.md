@@ -1,63 +1,91 @@
-# resonating loop
+# resonatrix station
 
-Maria Colette's personal site. The home page is hand-written HTML/CSS/JS; the
-writing section is built with [Eleventy](https://www.11ty.dev/).
+maria colette's personal site, published at
+[resonatrix.tech](https://resonatrix.tech/). the homepage is a hand-authored
+html/css/js instrument assembled by [eleventy](https://www.11ty.dev/); the same
+build owns the direct-url writing chamber.
 
-## Run it
+## run and prove it
 
 ```sh
-npm install            # once
-npx @11ty/eleventy --serve   # dev server with live reload
-# or: npm run dev
+npm ci
+npm test
+npm run dev
 ```
 
-Build to `_site/` for deploy:
+the production artifact is `_site/`:
 
 ```sh
 npm run build
 ```
 
-The home page (`index.html`) is also still openable directly in a browser —
-it's passthrough-copied verbatim and never templated.
+`npm test` validates visibility metadata and builds into a temporary directory
+to prove that unlisted pages receive the full document shell and noindex
+metadata without publishing an empty archive.
 
-## Structure
+## structure
 
-```
-index.html   the home "plate" — passthrough, untouched by the build
-style.css     design tokens at top — the main thing to tweak
-main.js       the resonance-ring interaction
+```text
+index.njk                  the home plate and corpus-aware signal field
+style.css                  visual tokens, layout, motion, and prose chamber
+main.js                    pointer listening, ripples, and signal tuning
 writing/
-  index.njk          the public archive (lists public posts only)
-  posts/             markdown posts (public + unlisted) with frontmatter
-  posts/posts.11tydata.js   the visibility CHOKEPOINT
-lib/visibility.js    the visibility RULEBOOK (read this to know every rule)
-_includes/           layouts (base.njk sets noindex for unlisted)
-_drafts/             private posts — ignored by the build, gitignored
-eleventy.config.js   the build
+  index.njk                public archive; absent while no public texts exist
+  **/*.md                  public or unlisted writing with explicit metadata
+  writing.11tydata.js      layouts and output routing for the whole tree
+lib/
+  visibility.js            valid visibility values
+  writing-metadata.js      fail-closed source validation
+_includes/                 post and document layouts
+_drafts/                   private writing; ignored and gitignored
+tests/                     visibility and built-artifact proof
+specs/                     accepted/retired transition records
+.github/workflows/pages.yml  the single pages build and deployment path
 ```
 
-## Writing & visibility
+## authority map
 
-Every post in `writing/posts/` must declare `visibility:` in its frontmatter —
-one of `public`, `unlisted`, or `private`. A missing or mistyped value **fails
-the build** (it never silently defaults to public).
+- `README.md` — operational/current front door.
+- `AGENTS.md` — agent authorization, boundaries, and close protocol.
+- `STATUS.md` — current verified checkpoint and next action.
+- `specs/*.md` — accepted or retired transition records.
+- source and tests — implemented behavior and executable proof.
 
-- **public** — in the archive (and later rss/sitemap/search).
-- **unlisted** — builds a real route, reachable by direct URL, `noindex,nofollow`,
-  but absent from the archive/feeds. (Its markdown still lives in the repo —
-  unlisted means "not advertised," not "secret.")
-- **private** — never built. Lives in `_drafts/` (build can't see it; gitignored).
+## writing visibility
 
-All the filtering logic is in two files: `lib/visibility.js` and
-`writing/posts/posts.11tydata.js`.
+every markdown file under `writing/` declares `visibility:` as exactly one of:
 
-## Status
+- `public` — enters the public writing collection. once at least one exists,
+  the archive and homepage `texts` signal are emitted by the build.
+- `unlisted` — builds a direct-url page with `noindex,nofollow` and must set
+  `eleventyExcludeFromCollections: true`. unlisted means unadvertised, not
+  secret; the source remains in this repository.
+- `private` — never enters the production artifact. private work belongs in
+  `_drafts/`, which eleventy and git both ignore.
 
-**v0, not deployed.** This repo has a remote but going live is a deliberate
-choice, made when it's ready — not a default. Build first, ship on purpose.
+missing, mistyped, or collection-leaking metadata fails the build before any
+output is produced. `lib/visibility.js`, `lib/writing-metadata.js`, and
+`writing/writing.11tydata.js` jointly own this boundary.
 
-## Tweaking the design
+## published topology
 
-Open `style.css`. Everything visual is a CSS custom property in `:root` at
-the top, each commented with what it does. Change a token once and the whole
-page re-tunes — start with `--space-unit` and `--size-name`.
+- `/geomatria/` is geogematria's separately deployed public atlas.
+- `/cootie-oracle/` is the separately deployed field oracle.
+- `cyphers.news` is an external collective signal.
+
+those projects keep their own repositories and release procedures. this repo
+owns only the homepage links to them.
+
+## deployment
+
+pushes to `main` trigger the one pages workflow: install, test, build `_site/`,
+then deploy that artifact. local implementation does not imply authorization to
+push or deploy; inspect `git status` before either transition.
+
+## design tuning
+
+the stable premise is a dark desert instrument with unequal signal gravity:
+geogematria holds the field, cyphers transmits outward, and cootie oracle folds
+one mischievous corner. start with the custom properties at the top of
+`style.css`; preserve semantic anchors, focus visibility, narrow-screen
+readouts, and reduced-motion behavior while tuning the plate.

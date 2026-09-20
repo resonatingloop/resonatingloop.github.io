@@ -1,0 +1,129 @@
+---
+permalink: /index.html
+eleventyImport:
+  collections: ["writing"]
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>desert resonatrix · maria colette</title>
+  <meta name="description" content="maria colette · desert resonatrix · ritual interfaces for uncertain entities" />
+  <meta name="theme-color" content="#07090f" />
+  <link rel="canonical" href="https://resonatrix.tech/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">enter the station</a>
+
+  <main id="main" class="plate" data-tuned="idle">
+    <span class="tick tick--tl" aria-hidden="true"></span>
+    <span class="tick tick--tr" aria-hidden="true"></span>
+    <span class="tick tick--bl" aria-hidden="true"></span>
+
+    <section class="identity" aria-labelledby="site-title">
+      <svg id="rings" class="rings" viewBox="-200 -200 400 400" aria-hidden="true">
+        <g id="reticle" class="reticle">
+          <g class="rings__group">
+            <circle r="40" />
+            <circle r="78" />
+            <circle r="116" />
+            <circle r="154" />
+            <circle r="192" />
+          </g>
+          <g class="rings__spokes">
+            <line x1="0" y1="-196" x2="0" y2="196" />
+            <line x1="-196" y1="0" x2="196" y2="0" />
+            <line x1="-139" y1="-139" x2="139" y2="139" />
+            <line x1="-139" y1="139" x2="139" y2="-139" />
+          </g>
+          <circle class="rings__core" r="4" />
+        </g>
+
+        <g class="rings__atlas">
+          <ellipse rx="154" ry="58" />
+          <ellipse rx="58" ry="154" />
+          <path d="M -181 -64 H 181 M -181 64 H 181" />
+          <path d="M -64 -181 V 181 M 64 -181 V 181" />
+          <circle class="rings__locus" cx="64" cy="-64" r="7" />
+        </g>
+
+        <g class="rings__carrier">
+          <path d="M 116 0 H 246" />
+          <circle cx="246" cy="0" r="3" />
+          <circle class="rings__carrier-pulse" cx="142" cy="0" r="3" />
+        </g>
+      </svg>
+
+      <div class="identity__text">
+        <h1 id="site-title" class="name">maria&nbsp;colette</h1>
+        <p class="epithet">desert&nbsp;resonatrix</p>
+        <p class="callsign">
+          <span class="callsign__glyph" aria-hidden="true">◎</span>
+          the&nbsp;loop&nbsp;resonates
+        </p>
+      </div>
+
+      <p class="bio">
+        <span class="bio__firstline">ritual interfaces for uncertain entities</span>
+        <span class="bio__secondline">quod&nbsp;·&nbsp;resonat&nbsp;·&nbsp;sequor</span>
+      </p>
+    </section>
+
+    <nav class="signals" aria-label="living work">
+      <a class="signal signal--geo" href="/geomatria/" data-tune="geo">
+        <span class="signal__glyph" aria-hidden="true">⌖</span>
+        <span class="signal__copy">
+          <span class="signal__name">geogematria</span>
+          <span class="signal__note">spatial operations</span>
+        </span>
+      </a>
+
+      <a class="signal signal--cyphers" href="https://cyphers.news/" rel="me" data-tune="cyphers">
+        <span class="signal__glyph" aria-hidden="true">⌁</span>
+        <span class="signal__copy">
+          <span class="signal__name">cyphers.news</span>
+          <span class="signal__note">collective engine</span>
+        </span>
+      </a>
+
+      {% if collections.writing.length %}
+      <a class="signal signal--writing" href="/writing/" data-tune="writing">
+        <span class="signal__glyph" aria-hidden="true">¶</span>
+        <span class="signal__copy">
+          <span class="signal__name">texts</span>
+          <span class="signal__note">{{ collections.writing.length }} transmission{% if collections.writing.length != 1 %}s{% endif %}</span>
+        </span>
+      </a>
+      {% endif %}
+
+      <a class="signal signal--cootie" href="/cootie-oracle/" data-tune="cootie">
+        <span class="signal__copy">
+          <span class="signal__name">cootie oracle</span>
+          <span class="signal__note">minor working</span>
+        </span>
+        <span class="signal__fold" aria-hidden="true"></span>
+      </a>
+    </nav>
+
+    <footer class="station-footer">
+      <nav class="channels" aria-label="elsewhere">
+        <a class="channel" href="https://github.com/resonatingloop" target="_blank" rel="me noopener">github</a>
+        <a class="channel" href="https://substack.com/@resonatingloop" target="_blank" rel="me noopener">substack</a>
+        <a class="channel" href="https://x.com/resonatingloop" target="_blank" rel="me noopener">twitter</a>
+        <a class="channel" href="https://instagram.com/reverse.oracle" target="_blank" rel="me noopener">instagram</a>
+        <a class="channel" href="mailto:resonatingloop@cyphers.news" rel="me">mail</a>
+      </nav>
+    </footer>
+  </main>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>
