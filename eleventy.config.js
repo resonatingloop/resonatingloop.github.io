@@ -20,6 +20,7 @@ module.exports = function (eleventyConfig) {
 
   // Static parts of the plate; index.njk is intentionally templated so the
   // writing signal can appear only when the public collection is non-empty.
+  eleventyConfig.addPassthroughCopy('favicon.svg');
   eleventyConfig.addPassthroughCopy('style.css');
   eleventyConfig.addPassthroughCopy('main.js');
 

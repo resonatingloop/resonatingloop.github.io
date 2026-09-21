@@ -55,6 +55,9 @@ test('production output keeps the unlisted chamber unadvertised', (t) => {
   );
 
   const home = fs.readFileSync(path.join(output, 'index.html'), 'utf8');
+  const favicon = fs.readFileSync(path.join(output, 'favicon.svg'), 'utf8');
+  assert.match(favicon, /<svg[^>]+viewBox="0 0 64 64"/);
+  assert.match(home, /<link rel="icon" type="image\/svg\+xml" href="\/favicon\.svg" \/>/);
   assert.match(home, /href="\/geomatria\/"/);
   assert.match(home, /href="https:\/\/cyphers\.news\/"/);
   assert.match(home, /href="\/cootie-oracle\/"/);
@@ -74,6 +77,7 @@ test('production output keeps the unlisted chamber unadvertised', (t) => {
     assert.equal(fs.existsSync(rendered), true, relative);
     const html = fs.readFileSync(rendered, 'utf8');
     assert.match(html, /^<!DOCTYPE html>/, relative);
+    assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="\/favicon\.svg" \/>/, relative);
     if (data.visibility === 'unlisted') {
       assert.match(
         html,
