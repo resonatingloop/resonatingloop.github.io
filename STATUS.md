@@ -2,7 +2,7 @@
 
 > **continuity role:** operational checkpoint  
 > **status:** current  
-> **last verified:** 2026-09-20  
+> **last verified:** 2026-09-21
 > **owns:** verified current state, active work, known gaps, and next useful action  
 > **update when:** a meaningful stopping point changes any of those facts
 
@@ -14,7 +14,8 @@ and cootie oracle; writing visibility fails closed; and a single github pages
 workflow owns the eleventy artifact. on fine-pointer screens the work rests as
 sigils only: geogematria and cyphers mirror one another across the upper field,
 their names resolving on hover or keyboard focus. touch layouts retain the full
-readouts.
+readouts. a high-contrast `◎` favicon now compresses the station's listening
+reticle into a bone loop and ember core that remains distinct at 16px.
 
 verification performed:
 
@@ -32,9 +33,10 @@ evidence of success:
 
 ```text
 4 node tests pass.
-eleventy copies 2 files and writes 15 files.
+eleventy copies 3 files and writes 15 files.
 desktop rest, desktop hover, and mobile fallback states render without
 navigation or utility collisions.
+favicon inspected at 16px, 32px, 64px, and 128px on dark and light fields.
 ```
 
 ## Working now
@@ -48,11 +50,13 @@ navigation or utility collisions.
 - the `texts` coordinate and `/writing/` archive appear only when a public text
   exists.
 - `.github/workflows/pages.yml` is the sole pages deployment workflow.
+- the homepage and writing document shell both reference `/favicon.svg`; the
+  eleventy artifact includes that asset.
 
 ## Incomplete or broken
 
-- the local changes have not been pushed or deployed; the live site still
-  presents the previous homepage until the owner authorizes publication.
+- the favicon changes have not been pushed or deployed; the live site keeps its
+  current icon behavior until the owner authorizes publication.
 
 ## Active work
 
@@ -62,8 +66,8 @@ navigation or utility collisions.
 
 ## Next useful action
 
-review the local diff, then explicitly authorize a commit and push when this
-version is ready to become the live machine.
+review the favicon in the local diff, then explicitly authorize a commit and
+push when it is ready to become the live icon.
 
 ## Re-entry notes
 

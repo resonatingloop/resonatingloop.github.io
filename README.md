@@ -27,6 +27,7 @@ metadata without publishing an empty archive.
 
 ```text
 index.njk                  the home plate and corpus-aware signal field
+favicon.svg                the station's high-contrast listening reticle
 style.css                  visual tokens, layout, motion, and prose chamber
 main.js                    pointer listening, ripples, and signal tuning
 writing/
