@@ -60,6 +60,7 @@ test('production output keeps the unlisted chamber unadvertised', (t) => {
   assert.match(home, /<link rel="icon" type="image\/svg\+xml" href="\/favicon\.svg" \/>/);
   assert.match(home, /href="\/geomatria\/"/);
   assert.match(home, /href="https:\/\/cyphers\.news\/"/);
+  assert.match(home, /href="\/upward\/"/);
   assert.match(home, /href="\/cootie-oracle\/"/);
   assert.doesNotMatch(home, /href="\/writing\/"/);
   assert.equal(fs.existsSync(path.join(output, 'writing', 'index.html')), false);

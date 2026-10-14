@@ -71,6 +71,7 @@ output is produced. `lib/visibility.js`, `lib/writing-metadata.js`, and
 ## published topology
 
 - `/geomatria/` is geogematria's separately deployed public atlas.
+- `/upward/` is the separately deployed integer morphology instrument.
 - `/cootie-oracle/` is the separately deployed field oracle.
 - `cyphers.news` is an external collective signal.
 
@@ -86,7 +87,8 @@ push or deploy; inspect `git status` before either transition.
 ## design tuning
 
 the stable premise is a dark desert instrument with unequal signal gravity:
-geogematria holds the field, cyphers transmits outward, and cootie oracle folds
-one mischievous corner. start with the custom properties at the top of
-`style.css`; preserve semantic anchors, focus visibility, narrow-screen
-readouts, and reduced-motion behavior while tuning the plate.
+geogematria holds the field, cyphers transmits outward, upward climbs through
+the lower ring, and cootie oracle folds one mischievous corner. start with the
+custom properties at the top of `style.css`; preserve semantic anchors, focus
+visibility, narrow-screen readouts, and reduced-motion behavior while tuning
+the plate.

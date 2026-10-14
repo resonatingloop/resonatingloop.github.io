@@ -163,7 +163,8 @@ a { color: inherit; }
 .reticle--g2 { opacity: 0.16; filter: blur(0.7px); }
 
 .rings__atlas,
-.rings__carrier {
+.rings__carrier,
+.rings__lattice {
   opacity: 0;
   transition: opacity 520ms var(--ease-signal);
 }
@@ -181,12 +182,28 @@ a { color: inherit; }
 .rings__carrier path,
 .rings__carrier circle { stroke: var(--ember-bright); }
 .rings__carrier circle { fill: var(--ember-bright); }
+.rings__lattice path {
+  stroke: var(--iris);
+  stroke-dasharray: 2 7;
+  opacity: 0.42;
+}
+.rings__lattice circle {
+  fill: var(--ground) !important;
+  stroke: var(--iris-2);
+}
+.rings__lattice .rings__lattice-crown {
+  fill: var(--ember-bright) !important;
+  stroke: none;
+  filter: drop-shadow(var(--glow-ember));
+}
 
 .plate[data-tuned="geo"] .rings__atlas { opacity: 0.78; }
 .plate[data-tuned="geo"] .rings__group circle { stroke: var(--iris); }
 .plate[data-tuned="geo"] .rings__core { fill: var(--iris) !important; filter: drop-shadow(var(--glow-iris)); }
 .plate[data-tuned="cyphers"] .rings__carrier { opacity: 0.82; }
 .plate[data-tuned="cyphers"] .rings__group circle:last-child { stroke: var(--ember-bright); }
+.plate[data-tuned="upward"] .rings__lattice { opacity: 0.84; }
+.plate[data-tuned="upward"] .rings__group circle:nth-child(even) { stroke: var(--iris-2); }
 .plate[data-tuned="cootie"] .rings__spokes line:nth-child(3),
 .plate[data-tuned="cootie"] .rings__spokes line:nth-child(4) { stroke: var(--iris-2); opacity: 0.64; }
 
@@ -336,6 +353,19 @@ a { color: inherit; }
   text-align: right;
 }
 
+.signal--upward {
+  top: calc(50% + 185px);
+  right: calc(50% + 205px);
+  flex-direction: row-reverse;
+  text-align: right;
+}
+.signal--upward .signal__glyph {
+  color: var(--iris-2);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
 .signal--writing {
   top: calc(50% + 185px);
   left: calc(50% + 205px);
@@ -414,7 +444,8 @@ a { color: inherit; }
     transition: opacity 260ms var(--ease-signal), transform 360ms var(--ease-signal);
   }
 
-  .signal--cyphers .signal__copy {
+  .signal--cyphers .signal__copy,
+  .signal--upward .signal__copy {
     right: calc(100% + 0.35rem);
     left: auto;
     align-items: flex-end;
@@ -615,6 +646,7 @@ a { color: inherit; }
     transform: none;
   }
   .signal--cyphers { flex-direction: row; }
+  .signal--upward { flex-direction: row; text-align: left; }
   .signal:hover,
   .signal:focus-visible { transform: translateX(3px); }
 
@@ -647,6 +679,7 @@ a { color: inherit; }
   .rings { width: min(88vh, 620px); height: min(88vh, 620px); }
   .signal--geo { top: calc(50% - 235px); }
   .signal--cyphers { top: calc(50% - 235px); }
+  .signal--upward { top: calc(50% + 155px); }
   .station-footer { bottom: 1.4rem; }
 }
 
