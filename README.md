@@ -68,6 +68,19 @@ missing, mistyped, or collection-leaking metadata fails the build before any
 output is produced. `lib/visibility.js`, `lib/writing-metadata.js`, and
 `writing/writing.11tydata.js` jointly own this boundary.
 
+## series-aware writing
+
+the post layout accepts an optional series mantle without making one series or
+author the site-wide default. `series`, `seriesEntry`, `deck`, `author`, and
+`fieldStudy` shape the header; `colophon` and `credits` accept ordered
+`label`/`value` records for a source account. omit any field that does not
+belong to the piece.
+
+these fields are presentation metadata only. they never change publication
+visibility, turn case-local references into links, or override the explicit
+`visibility` contract. `writing/template.md` carries a fictional example;
+private drafts remain under ignored `_drafts/` until an explicit release.
+
 ## published topology
 
 - `/geomatria/` is geogematria's separately deployed public atlas.

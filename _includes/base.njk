@@ -19,8 +19,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css" />
 </head>
-<body>
-  <main class="prose">
+<body{% if series %} class="body--writing-series"{% endif %}>
+  <a class="skip-link" href="#main-content">skip to writing</a>
+  <main class="prose" id="main-content">
     <a class="prose__home" href="/">desert resonatrix</a>
     {{ content | safe }}
   </main>
