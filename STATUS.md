@@ -20,6 +20,10 @@ record moved into semantic page regions. only the derived note and opaque
 case-local references cross the boundary; the raw solar-flares source remains
 private and local.
 
+the homepage now gives the public writing archive an explicit `writing`
+channel in the footer as well as its existing `¶ texts` constellation signal,
+so the archive remains legible without requiring hover discovery.
+
 owner visual review accepted the local field-note presentation on 2026-11-08:
 the oversized title and deck, circuit/index rail, orange entry number, codex
 signature, stacked mobile attribution, ceremonial body aperture, and raised
@@ -72,7 +76,8 @@ writing ground.
 - optional series metadata produces a dispatch mantle and source colophon while
   preserving a portable markdown body.
 - one public agentic field note enters the homepage writing signal and public
-  archive; its case-local trace references remain plain text.
+  archive; an explicit footer channel exposes the same archive without hiding
+  its name behind hover, and case-local trace references remain plain text.
 - current unlisted writing emits direct-url pages with `noindex,nofollow` and
   stays out of collections; private writing does not emit.
 - the `texts` coordinate and `/writing/` archive now appear for the public note.
