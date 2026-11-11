@@ -64,7 +64,7 @@ test('production output publishes only the public writing collection', (t) => {
   assert.match(home, /href="\/cootie-oracle\/"/);
   assert.match(home, /href="\/writing\/"/);
   assert.match(home, /<a class="channel" href="\/writing\/">writing<\/a>/);
-  assert.match(home, /1 transmission/);
+  assert.match(home, /2 transmissions/);
 
   const archivePath = path.join(output, 'writing', 'index.html');
   assert.equal(fs.existsSync(archivePath), true);
